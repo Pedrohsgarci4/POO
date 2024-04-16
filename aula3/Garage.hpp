@@ -24,7 +24,7 @@ public:
 
     Vehicle* search_by(int id);
     Vehicle* search_by(std::string placa);
-    Vehicle* Garage::search_by_weight( int weigth);
+    Vehicle* search_by_weight( int weigth);
     std::list<Vehicle*> search_by( double lat, double lng);
     std::list<Vehicle*> search_by();
    

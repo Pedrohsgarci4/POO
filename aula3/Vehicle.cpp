@@ -12,6 +12,15 @@ std::list<Vehicle*>& Vehicle::get_instances() {
     return instances;
 }
 
+Vehicle::Vehicle(){
+    this->id = prox_id;
+    increment_id();
+
+    this->available = true;
+
+    instances.push_back(this);
+}
+
 Vehicle::Vehicle(std::string placa, std::string chassi, std::string modelo, int capacidade, int ano, double lat, double lng) {
     if (placa.size() != 8) {
         throw std::invalid_argument("Valor inválido para placa");

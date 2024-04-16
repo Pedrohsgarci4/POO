@@ -12,6 +12,7 @@ int Adm::add_orders( Order* order){
         return 1;
     }
     this->orders.push_back( order);
+    return 0;
 }
 
 void Adm::fulfill_orders_without_quantity( Order *order){
@@ -57,6 +58,7 @@ void Adm::fulfill_orders( bool priority){
         this->orders.pop_front();
         if( priority){
             this->fulfills_orders_for_minors( order);
+            std::cout<< "Foi atendido \n";
         }
         else{
             this->fulfill_orders_without_quantity(order);

@@ -5,19 +5,24 @@
 #include"Pickup.hpp"
 #include"Truck.hpp"
 #include"Client.hpp"
+#include "Adm.hpp"
 
 int main(){
 
-    Garage *garagem = new Garage( -13.0, 13);
+    Garage *garagem = new Garage( -13.0, 13.0);
 
-    Car *uno = new Car("JAY-0000", "9BWHE21JX24060831", "Uno", 10, 2010, -13.0, 13);
+    Car *uno = new Car("JAY-0000", "9BWHE21JX24060831", "Uno", 10, 2010, -13.0, 13.0);
+    Car *prisma = new Car ("MNS-0000", "9BWHE21JX24060831" , "Prisma", 10, 2010, -13.0, 13.0);
 
-    garagem->add_vehicle( uno);
-    Client *cliente = new Client( "014.245.140-54", "Pedro", 18);
+    std::cout << uno;
+    std::cout << garagem << '\n';
 
-    Order *pedido = new Order( 0, "Transportar caixas", Coordinates( 10, 12),Coordinates(10, 10), 10, 100);
+    Order *order = new Order( 0, "Transportar caixas", Coordinates( 10.0, 12.1),Coordinates(10.0, 10.1), 10, 100);
+    
+    Adm *adm = new Adm( garagem);
 
-    bool status = garagem->fulfill_order(pedido);
+    adm->add_orders(order);
+    adm->fulfill_orders( true);
 
 }
 

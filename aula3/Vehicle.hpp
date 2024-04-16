@@ -24,6 +24,8 @@ private:
 public:
     static std::list<Vehicle*>& get_instances();
 
+    Vehicle();
+
     Vehicle(std::string placa, std::string chassi, std::string modelo, int capacidade, int ano, double lat, double lng);
 
     virtual ~Vehicle();

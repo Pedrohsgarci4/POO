@@ -22,8 +22,8 @@ class Adm{
 
         int add_orders( Order *order);
         void fulfill_orders( bool priority);
-        bool fulfills_orders_for_minors( Order *order);
-        bool fulfill_orders_without_quantity( Order *order);
+        void fulfills_orders_for_minors( Order *order);
+        void fulfill_orders_without_quantity( Order *order);
 };
 
 #endif
