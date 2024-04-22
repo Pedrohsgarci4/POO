@@ -103,7 +103,9 @@ void Manager::fulfill_orders( bool priority){
             else{
                 std::cout<< "Nao  foi atendido \n";
             }
+
         }
+        order++;
     }
     
 }
@@ -115,5 +117,5 @@ bool Manager::operator==( const Manager& other){
 }
 
 std::ostream& operator<<( std::ostream& os, const Manager& obj){
-    os << obj.garage << std::endl;
+    return os << obj.garage << std::endl;
 }
