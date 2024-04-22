@@ -68,6 +68,16 @@ std::string Client::get_cpf() {
     return this->cpf;
 }
 
+bool Client::operator==( const Client& other){
+    return ( this->cpf == other.cpf) && (this->id == other.id);
+}
+
+std::ostream& operator<<( std::ostream& os, const Client& obj){
+    os << "Cliente " << obj.name << " de CPF " << obj.cpf;
+    return os;
+}
+
+
 void Client::add_order(Order* order) {
     this->orders.push_back(order);
 }

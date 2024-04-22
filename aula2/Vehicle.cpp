@@ -12,7 +12,7 @@ std::list<Vehicle*>& Vehicle::get_instances() {
     return instances;
 }
 
-Vehicle::Vehicle(std::string placa, std::string chassi, std::string modelo, int capacidade, int ano, std::string local) {
+Vehicle::Vehicle(std::string placa, std::string chassi, std::string modelo, int capacidade, int ano, double lat, double lng) {
     if (placa.size() != 8) {
         throw std::invalid_argument("Valor inválido para placa");
     }
@@ -38,7 +38,7 @@ Vehicle::Vehicle(std::string placa, std::string chassi, std::string modelo, int 
     }
     this->ano = ano;
 
-    this->local = local;
+    this->coordinates.set_coordinates( lat, lng);
 
     this->id = prox_id;
     increment_id();
@@ -116,13 +116,13 @@ int Vehicle::get_ano() {
     return this->ano;
 }
 
-int Vehicle::set_local(std::string local) {
-    this->local = local;
+int Vehicle::set_coordinates(double lat, double lng) {
+    this->coordinates.set_coordinates( lat, lng);
     return 1;
 }
 
-std::string Vehicle::get_local() {
-    return this->local;
+Coordinates Vehicle::get_coordinates() {
+    return this->coordinates;
 }
 
 bool Vehicle::is_available() {
@@ -131,4 +131,14 @@ bool Vehicle::is_available() {
 
 void Vehicle::set_available(bool status) {
     this->available = status;
+}
+
+
+bool Vehicle::operator==( const Vehicle& other){ 
+    return this->get_id() == other.id && this->get_chassi() == other.placa;
+}
+
+std::ostream& operator<<( std::ostream& os, const Vehicle& obj){
+    os << obj.modelo<<" de placa "<< obj.placa;
+    return os;
 }

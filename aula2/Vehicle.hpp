@@ -3,6 +3,7 @@
 
 #include<iostream>
 #include<list>
+#include "coordinates.hpp"
 
 class Vehicle {
 private:
@@ -14,7 +15,7 @@ private:
     std::string modelo;
     int capacidade;
     int ano;
-    std::string local;
+    Coordinates coordinates;
 
     bool available;
 
@@ -23,7 +24,7 @@ private:
 public:
     static std::list<Vehicle*>& get_instances();
 
-    Vehicle(std::string placa, std::string chassi, std::string modelo, int capacidade, int ano, std::string local);
+    Vehicle(std::string placa, std::string chassi, std::string modelo, int capacidade, int ano, double lat, double lng);
 
     virtual ~Vehicle();
 
@@ -44,12 +45,16 @@ public:
     int set_ano(int ano);
     int get_ano();
 
-    int set_local(std::string local);
-    std::string get_local();
+    int set_coordinates( double lat, double lng);
+    Coordinates get_coordinates();
 
     bool is_available();
 
     void set_available(bool status);
+
+    bool operator==( const Vehicle& other);
+
+    friend std::ostream& operator<<(std::ostream& os, const Vehicle& obj);
 
 protected:
     static std::list<Vehicle*> instances;

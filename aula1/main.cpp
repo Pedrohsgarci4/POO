@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <list>
 
 using namespace std;
 /*
@@ -97,9 +97,12 @@ class Vehicle{
 int Vehicle :: prox_id = 1;
 
 class Car : public Vehicle{
+    private:
+        std::list<Car*> instances;
+
     public:
         Car() : Vehicle(){
-
+            instances.push_back( this);
         }
         Car( string placa, string chassi, string modelo, int capacidade, int ano, string adress) : Vehicle( placa, chassi, modelo, capacidade, ano, adress){
             // Construtor vazio até futuras implementações
@@ -109,20 +112,28 @@ class Car : public Vehicle{
 };
 
 class Truck : public Vehicle{
+    private:
+        std::list<Truck*> instances;
+
     public:
         Truck() : Vehicle(){
-
+            instances.push_back(this);
         }
         Truck( string placa, string chassi, string modelo, int capacidade, int ano, string adress) : Vehicle( placa, chassi, modelo, capacidade, ano, adress){
+            instances.push_back(this);
             // Construtor vazio até futuras implementações
         }
 };
 class Pickup : public Vehicle{
+    private:
+    std::list<Pickup*> instances;
+
     public:
         Pickup() : Vehicle(){
-
+            instances.push_back(this);
         }
         Pickup ( string placa, string chassi, string modelo, int capacidade, int ano, string adress) : Vehicle( placa, chassi, modelo, capacidade, ano, adress){
+            instances.push_back(this);
             // Construtor vazio até futuras implementações
         }
         
@@ -132,6 +143,7 @@ class Pickup : public Vehicle{
 
 class Order{
     private:
+        std::list<Order*> instances;
         static int prox_id;         // Variavel usada pra criar id's autoincrementados e unicos
         int id;
         int order_id;
@@ -167,6 +179,8 @@ class Order{
             this->fleet_of_cars = nullptr;
             this->fleet_of_pickups = nullptr;
             this->fleet_of_trucks = nullptr;
+
+            instances.push_back(this);
         }
 
         int get_client_id(){
@@ -256,6 +270,7 @@ int Order::prox_id = 1;
 
 class Client{
     private:
+        std::list<Client*> instances;
         string name;
         int cpf;
         int idade;
@@ -263,6 +278,7 @@ class Client{
 
     public:
         Client(){
+            instances.push_back(this);
             // Vazio
         }
         Client( int cpf, string name, int idade){
@@ -270,6 +286,7 @@ class Client{
             this->cpf = cpf;
             this->idade = idade;
             this->orders = nullptr;
+            instances.push_back(this);
         }
 
         void set_name(string name){

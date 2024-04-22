@@ -34,6 +34,9 @@ public:
     int set_cpf(std::string cpf);
     std::string get_cpf();
 
+    bool operator==( const Client& other);
+    friend std::ostream& operator<<( std::ostream& os, const Client& obj);
+
     void add_order(Order *order);
     void delete_order(Order *order);
     void delete_orders();

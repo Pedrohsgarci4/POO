@@ -16,8 +16,8 @@ private:
     int id;
     Client* client;
     std::string description;
-    std::string collection_point;
-    std::string delivery_point;
+    Coordinates collection_point;
+    Coordinates delivery_point;
     int weight;
     int size;
     std::list<Vehicle*> vehicles;
@@ -25,7 +25,7 @@ private:
     void increment_id();
 
 public:
-    Order(int client_id, std::string description, std::string collection_point, std::string delivery_point, int weight, int size);
+    Order(int client_id, std::string description, Coordinates collection_point, Coordinates delivery_point, int weight, int size);
     ~Order();
 
     Client *get_client();
@@ -33,11 +33,11 @@ public:
     std::string get_description();
     int set_description(std::string description);
 
-    std::string get_collection_point();
-    int set_collection_point(std::string collection_point);
+    Coordinates get_collection_point();
+    int set_collection_point(double lat, double lng);
 
-    std::string get_delivery_point();
-    int set_delivery_point(std::string delivery_point);
+    Coordinates get_delivery_point();
+    int set_delivery_point(double lat, double lng);
 
     int get_weight();
     int set_weight(int weight);

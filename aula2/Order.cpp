@@ -8,7 +8,7 @@ void Order::increment_id() {
     prox_id++;
 }
 
-Order::Order(int client_id, std::string description, std::string collection_point, std::string delivery_point, int weight, int size) {
+Order::Order(int client_id, std::string description, Coordinates collection_point, Coordinates delivery_point, int weight, int size) {
     this->id = prox_id;
     increment_id();
 
@@ -62,32 +62,28 @@ int Order::set_description(std::string description) {
     return 0;
 }
 
-std::string Order::get_collection_point() {
+Coordinates Order::get_collection_point() {
     return collection_point;
 }
 
-int Order::set_collection_point(std::string collection_point) {
-    if (collection_point.size()) {
-        this->collection_point = collection_point;
-        return 1;
-    }
-    return 0;
+int Order::set_collection_point(double lat, double lng) {
+    this->collection_point.set_coordinates( lat, lng);
+    return 1;
 }
 
-std::string Order::get_delivery_point() {
+Coordinates Order::get_delivery_point() {
     return delivery_point;
 }
 
-int Order::set_delivery_point(std::string delivery_point) {
-    if (delivery_point.size()) {
-        this->delivery_point = delivery_point;
-        return 1;
-    }
-    return 0;
+int Order::set_delivery_point( double lat, double lng) {
+    
+    this->delivery_point.set_coordinates( lat, lng);
+    return 1;
+
 }
 
 int Order::get_weight() {
-    return weight;
+    return this->weight;
 }
 
 int Order::set_weight(int weight) {
