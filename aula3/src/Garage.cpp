@@ -1,4 +1,4 @@
-#include "Garage.hpp"
+#include "../include/Garage.hpp"
 #include <iostream>
 #include <algorithm>
 
@@ -22,6 +22,28 @@ std::list<Vehicle*>* Garage::get_active_vehicles(){
     return &this->active_vehicles;
 }
 
+// Busca por disponibilidade
+std::list<Vehicle*> Garage::search_by() {
+    std::list<Vehicle*> vehicles;
+    for (auto vehicle : active_vehicles) {
+        if (vehicle->is_available()) {
+            vehicles.push_back(vehicle);
+        }
+    }
+    return vehicles;
+}
+
+// Metodo recebe func que é uma função que sera usada na comparação 
+template<typename Func>
+Vehicle* Garage::search(Func func) {
+    auto it = std::find_if(active_vehicles.begin(), active_vehicles.end(), func);
+    if (it != active_vehicles.end()) {
+        return *it; // Retorna o ponteiro para o veículo encontrado
+    } else {
+        return nullptr; // Retorna nullptr se o veículo não for encontrado
+    }
+}
+
 // Busca por id
 Vehicle* Garage::search_by(int id) {
     auto compara_id = [id](Vehicle* vehicle) {
@@ -39,61 +61,35 @@ Vehicle* Garage::search_by(std::string placa) {
 }
 
 // Busca por coordenadas
-std::list<Vehicle*> Garage::search_by( double lat, double lng) {
-    Coordinates coordinates(lat, lng);
+std::list<Vehicle*> Garage::search_by( Coordinates coordinates) { 
     std::list<Vehicle*> veiculos_no_local;
     for (auto vehicle : this->active_vehicles) {
-        if (vehicle->get_coordinates() == coordinates) {
-            veiculos_no_local.push_back(vehicle);
+        // Verifica se o veiculo esta proximo e se esta disponivel 
+        if ( Coordinates::calculate_distance( vehicle->get_coordinates(), coordinates) < 10 && vehicle->is_available()) {
+            veiculos_no_local.push_back(vehicle); 
         }
     }
     return veiculos_no_local;
 }
-// Busca por disponibilidade
-std::list<Vehicle*> Garage::search_by() {
-    std::list<Vehicle*> vehicles;
-    for (auto vehicle : active_vehicles) {
-        if (vehicle->is_available()) {
-            vehicles.push_back(vehicle);
-        }
-    }
-    return vehicles;
-}
+
 
 Vehicle* Garage::search_by_weight( int weigth){
     Vehicle *aux = nullptr;
     for (auto vehicle : active_vehicles) {
-        if (vehicle->get_capacidade()  >weigth && vehicle->is_available()) {
+        if( aux){
+            // Se encontrar um veiculo melhor entao eh atualizado
+            if (vehicle->get_capacidade()  > aux->get_capacidade() && vehicle->is_available()) {
+                aux = vehicle;
+            }
+        }
+        else if( !aux && vehicle->get_capacidade() > weigth && vehicle->is_available()){
             aux = vehicle;
-            break;
         }
     }
     return aux;
 
 }
 
-template<typename Func>
-Vehicle* Garage::search(Func func) {
-    auto it = std::find_if(active_vehicles.begin(), active_vehicles.end(), func);
-    if (it != active_vehicles.end()) {
-        return *it; // Retorna o ponteiro para o veículo encontrado
-    } else {
-        return nullptr; // Retorna nullptr se o veículo não for encontrado
-    }
-}
-
-bool Garage::fulfill_order(Order* order) {
-    std::list<Vehicle*> vehicles = search_by();
-    if (!vehicles.empty()) {
-        Vehicle* vehicle = vehicles.front();
-        vehicle->set_available(false);
-        order->add_vehicle(vehicle);
-        std::cout << "O Pedido foi atendido\n";
-        return true;
-    }
-    std::cout << "Todos os veiculos ocupados\nPedido não atendido\n";
-    return false;
-}
 
 bool Garage::operator==( const Garage& other){
     return this->coordinates == other.coordinates;

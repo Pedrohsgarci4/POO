@@ -1,4 +1,4 @@
-#include "Client.hpp"
+#include "../include/Client.hpp"
 #include <stdexcept>
 
 
@@ -9,7 +9,7 @@ void Client::increment_id() {
     prox_id++;
 }
 
-std::list<Client*>& Client::get_instances() {
+std::list<Client*>& Client::get_instances(){
     return instances;
 }
 
@@ -40,7 +40,7 @@ Client::~Client() {
     instances.remove(this);
 }
 
-int Client::get_id() {
+int Client::get_id() const{
     return this->id;
 }
 
@@ -52,7 +52,7 @@ int Client::set_name(std::string name) {
     return 0;
 }
 
-std::string Client::get_name() {
+std::string Client::get_name() const{
     return this->name;
 }
 
@@ -64,7 +64,7 @@ int Client::set_cpf(std::string cpf) {
     return 0;
 }
 
-std::string Client::get_cpf() {
+std::string Client::get_cpf() const{
     return this->cpf;
 }
 

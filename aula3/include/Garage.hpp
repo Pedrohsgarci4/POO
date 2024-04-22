@@ -25,11 +25,12 @@ public:
     Vehicle* search_by(int id);
     Vehicle* search_by(std::string placa);
     Vehicle* search_by_weight( int weigth);
-    std::list<Vehicle*> search_by( double lat, double lng);
-    std::list<Vehicle*> search_by();
-   
-    bool fulfill_order(Order* order);
 
+    // metodo retorna uma lista com base em disponibilidade 
+    std::list<Vehicle*> search_by();
+    // metodo retorna uma lista com base na proximidade 
+    std::list<Vehicle*> search_by( Coordinates coordinates);
+   
     bool operator==( const Garage& other);
 
     friend std::ostream& operator<<( std::ostream& os, const Garage& obj);

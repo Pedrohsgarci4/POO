@@ -1,4 +1,4 @@
-#include "Vehicle.hpp"
+#include "../include/Vehicle.hpp"
 #include <stdexcept>
 
 std::list<Vehicle*> Vehicle::instances;
@@ -130,9 +130,10 @@ int Vehicle::set_coordinates(double lat, double lng) {
     return 1;
 }
 
-Coordinates Vehicle::get_coordinates() {
+Coordinates& Vehicle::get_coordinates() {
     return this->coordinates;
 }
+
 
 bool Vehicle::is_available() {
     return this->available;
@@ -144,10 +145,10 @@ void Vehicle::set_available(bool status) {
 
 
 bool Vehicle::operator==( const Vehicle& other){ 
-    return this->get_id() == other.id && this->get_chassi() == other.placa;
+    return this->get_id() == other.id;
 }
 
-std::ostream& operator<<( std::ostream& os, const Vehicle& obj){
-    os << obj.modelo<<" de placa "<< obj.placa;
+std::ostream& operator<<( std::ostream& os, Vehicle& obj){
+    os << obj.get_modelo()<<" de placa "<< obj.get_placa();
     return os;
 }

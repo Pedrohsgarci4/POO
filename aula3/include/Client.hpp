@@ -26,13 +26,13 @@ public:
     Client(std::string cpf, std::string name, int idade);
     ~Client();
 
-    int get_id();
+    int get_id() const;
+    std::string get_name() const;
+    std::string get_cpf() const;
+
 
     int set_name(std::string name);
-    std::string get_name();
-
     int set_cpf(std::string cpf);
-    std::string get_cpf();
 
     bool operator==( const Client& other);
     friend std::ostream& operator<<( std::ostream& os, const Client& obj);

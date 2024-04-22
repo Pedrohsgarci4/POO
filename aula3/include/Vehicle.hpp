@@ -3,7 +3,7 @@
 
 #include<iostream>
 #include<list>
-#include "coordinates.hpp"
+#include "Coordinates.hpp"
 
 class Vehicle {
 private:
@@ -48,7 +48,7 @@ public:
     int get_ano();
 
     int set_coordinates( double lat, double lng);
-    Coordinates get_coordinates();
+    Coordinates& get_coordinates();
 
     bool is_available();
 
