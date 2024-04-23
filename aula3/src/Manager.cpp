@@ -86,26 +86,22 @@ void Manager::fulfill_orders( bool priority){
     auto order = this->orders.begin();              // Percorrendo lista
     while (order != this->orders.end()){
         auto current  = order;
+        bool status = false;
         if( priority){
-            if ( this->fulfill_order_with_quantify( *order)){       // 
-                std::cout<< "Foi atendido \n";
-                // this->orders.erase(current);
-            }
-            else{
-                std::cout<< "Nao  foi atendido \n";
-            }
+            status = this->fulfill_order_with_quantify( *order);   
         }
         else{
-            if( this->fulfill_order(*order)){
-                std::cout<< "Foi atendido \n";
-                // this->orders.erase(current);
-            }
-            else{
-                std::cout<< "Nao  foi atendido \n";
-            }
-
+            status = this->fulfill_order(*order);
         }
-        order++;
+        if( status){
+            std::cout << "Foi atendido\n";
+            order++;
+            this->orders.remove( *current);
+        }
+        else{
+            std::cout << "Nao foi atendido\n";
+            order++;
+        }
     }
     
 }
