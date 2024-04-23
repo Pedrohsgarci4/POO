@@ -89,7 +89,7 @@ void Manager::fulfill_orders( bool priority){
         if( priority){
             if ( this->fulfill_order_with_quantify( *order)){       // 
                 std::cout<< "Foi atendido \n";
-                this->orders.erase(current);
+                // this->orders.erase(current);
             }
             else{
                 std::cout<< "Nao  foi atendido \n";
@@ -98,7 +98,7 @@ void Manager::fulfill_orders( bool priority){
         else{
             if( this->fulfill_order(*order)){
                 std::cout<< "Foi atendido \n";
-                this->orders.erase(current);
+                // this->orders.erase(current);
             }
             else{
                 std::cout<< "Nao  foi atendido \n";

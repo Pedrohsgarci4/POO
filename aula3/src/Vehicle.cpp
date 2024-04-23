@@ -148,7 +148,7 @@ bool Vehicle::operator==( const Vehicle& other){
     return this->get_id() == other.id;
 }
 
-std::ostream& operator<<( std::ostream& os, Vehicle& obj){
-    return os << obj.get_modelo()<<" de placa "<< obj.get_placa();
+std::ostream& operator<<( std::ostream& os, const Vehicle& obj){
+    return os << obj.modelo <<" de placa "<< obj.placa;
     
 }
