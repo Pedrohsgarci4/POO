@@ -15,8 +15,10 @@ class Order {
 
         int id;
         Client* client;
-        std::string collection_point;
-        std::string delivery_point;
+        Coordinates collection_point;
+        Coordinates delivery_point;
+        Coordinates collection_point;
+        Coordinates delivery_point;
         float weight;
         float volume;
         std::string priority;
@@ -25,13 +27,15 @@ class Order {
         static void increment_id();
 
     public:
-        Order(int client_id, std::string collection_point, std::string delivery_point, float weight, float volume, std::string priority);
+        Order(int client_id, Coordinates collection_point, Coordinates delivery_point, float weight, float volume, std::string priority);
         ~Order();
 
         int get_id() const;
         Client *get_client() const;
-        std::string get_collection_point() const;
-        std::string get_delivery_point() const;
+        Coordinates get_collection_point() const;
+        Coordinates get_delivery_point() const;
+        Coordinates get_collection_point() const;
+        Coordinates get_delivery_point() const;
         float get_weight() const;
         float get_volume() const;
         std::string get_priority() const;

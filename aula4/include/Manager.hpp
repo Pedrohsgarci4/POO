@@ -21,7 +21,7 @@ class Manager{
         ~Manager();
 
         int add_order( Order *order);
-        int add_order( int client_id, Coordinates collection_point, Coordinates delivery_point, int weight, int size);
+        int add_order(int client_id, Coordinates collection_point, Coordinates delivery_point, float weight, float size, std::string priority);
         void fulfill_orders( bool priority);
         bool fulfill_order_with_quantify( Order *order);
         bool fulfill_order( Order *order,  int num = 2);

@@ -17,9 +17,9 @@ int Manager::add_order( Order* order){
     return 0;
 }
 
-int Manager::add_order( int client_id, Coordinates collection_point, Coordinates delivery_point, int weight, int size)
+int Manager::add_order( int client_id, Coordinates collection_point, Coordinates delivery_point, float weight, float size, std::string priority)
 {
-    Order * order = new Order( client_id, collection_point, delivery_point, weight, size);
+    Order * order = new Order(client_id, collection_point, delivery_point, weight, size, priority);
 
     this->orders.push_back( order);
 
@@ -79,7 +79,7 @@ bool Manager::fulfill_order_with_quantify( Order *order){
 void Manager::fulfill_orders( bool priority){
     // priority: o pedido sera encaminhado para veiculos com capacidade maior se true
     // senão o trabalho sera dividido para veiculos menores
-3
+
     auto order = this->orders.begin(); // Percorrendo lista
     while (order != this->orders.end()){
         auto current  = order;

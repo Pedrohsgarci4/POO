@@ -10,8 +10,6 @@
 
 int main(){
 
-    registerFile("C:/Users/lucas/OneDrive/Documents/faculdade/terceiro semestre/POO dupla/POO/aula3/dados_entregas.csv", "modified_csv");
-
-    return 0;
+    
 }
 
