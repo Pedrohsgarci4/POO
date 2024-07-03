@@ -168,4 +168,3 @@ std::ostream& operator<<(std::ostream& os, const Order& obj) {
     os << "<Pedido " << obj.get_id() << ">\nDe:\n" << obj.get_collection_point() << "\nPara:\n" << obj.get_delivery_point() << "\n";
     return os;
 }
-

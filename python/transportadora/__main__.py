@@ -10,7 +10,7 @@ def add_vehicles( garage, n_vehicles):
         garage.add_vehicle( Vehicle("EUR-40U5", "XXXXXXXXXXXXXXXXX", 'Fiat uno turbinado', randint(500, 1000),2012, point.latitude, point.longitude))
 
 def main():
-    point = Coordinates.random_coordinates('')
+    point = Coordinates.random_coordinates('Garagem')
 
     garage = Garage( point.latitude, point.longitude)
 
